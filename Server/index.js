@@ -3,7 +3,14 @@ import cors from 'cors'
 import { adminRouter } from "./Routes/AdminRoute.js";
 
 const app = express()
-app.use(cors())
+app.use(cors({
+    origin: ["http://localhost:5173"],
+    methods: ['GET', 'POST', 'PUT'],
+    credentials: true
+}))
+
+app.options('*', cors()); //kjo eshte shtu pershkak se nuk ka funksionu axiosi mir 
+
 app.use(express.json())
 app.use('/auth', adminRouter)
 
